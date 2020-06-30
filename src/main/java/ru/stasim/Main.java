@@ -11,12 +11,13 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        String name = JOptionPane.showInputDialog("Название файла");
-        String urlAddress="https://"+ JOptionPane.showInputDialog("Введите адрес страницы https://");
-        TextService textSerice = new TextService();
+        TextService textService = new TextService();
         WebService webService = new WebService();
+        String name = JOptionPane.showInputDialog("Дайте название файлу");
+        String urlAddress="https://"+ JOptionPane.showInputDialog("Введите адрес страницы https://");
+        String file =JOptionPane.showInputDialog("Назовите фаел для подсчета слов");
         webService.savePage(urlAddress, name);
-        textSerice.words("result/" +name );
+        textService.words("result/" +file );
 
 
 

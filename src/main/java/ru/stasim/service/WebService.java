@@ -16,12 +16,22 @@ public class WebService {
         try {
             String pAp = "result/" + name ;
             URL url = new URL(urlAddress);
-            InputStream input = url.openStream();
-            Path path = Path.of(pAp);
-            if (Files.exists(path)) {
-                Files.delete(path);
-            }
-            Files.copy(input, path);
+            try {
+                InputStream input = url.openStream();
+
+                try {
+                    Path path = Path.of(pAp);
+                    if (Files.exists(path)) {
+                        Files.delete(path);
+                    }
+                    Files.copy(input, path);
+
+                }catch (NullPointerException e){
+                    e.printStackTrace();
+                }
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage()+" "+ "Вы забыли указать сайт");
+        }
 
         }
         catch (IOException e){

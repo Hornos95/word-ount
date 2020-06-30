@@ -23,6 +23,7 @@ public class TextService {
         Path path = Paths.get(pAp);
         HashMap<String, Integer> wordToCount = new HashMap<>();
 
+
         try {
             Charset charset = StandardCharsets.UTF_8;
             String lf = new String(Files.readAllBytes(path), charset);
