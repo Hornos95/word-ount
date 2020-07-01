@@ -1,5 +1,6 @@
 package ru.stasim.service;
 
+import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -15,15 +16,17 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
+@Data
 public class TextService {
+    private HashMap<String, Integer> wordToCount = new HashMap<>();
+
 
 
     public HashMap<String, Integer> words(String pAp) {
         Path path = Paths.get(pAp);
-        HashMap<String, Integer> wordToCount = new HashMap<>();
-
-
+        String[] words;
         try {
             Charset charset = StandardCharsets.UTF_8;
             String lf = new String(Files.readAllBytes(path), charset);
@@ -53,10 +56,10 @@ public class TextService {
             lf = lf.replace('!', ' ');
             lf = lf.replace('?', ' ');
             lf = lf.replace('/', ' ');// Заменяем пробелами знаки
-            lf=lf.toUpperCase();// Изменяем регистр строки на верхний
+            lf = lf.toUpperCase();// Изменяем регистр строки на верхний
             Scanner in = new Scanner(lf);
             String string = in.nextLine();
-            String[] words = string.split("\\s+");// Разделяем текст на пробелы
+            words = string.split("\\s+");// Разделяем текст на пробелы
             for (String word : words) {
                 if (!wordToCount.containsKey(word)) {
                     wordToCount.put(word, 0);

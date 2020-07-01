@@ -6,6 +6,7 @@ import ru.stasim.service.WebService;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.util.Arrays;
 
 
 public class Main {
@@ -18,8 +19,6 @@ public class Main {
         String file =JOptionPane.showInputDialog("Назовите фаел для подсчета слов");
         webService.savePage(urlAddress, name);
         textService.words("result/" +file );
-
-
 
     }
 }
